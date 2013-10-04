@@ -1,0 +1,8 @@
+require 'csv'
+require_relative 'ActiveRecordSunlight/app/models/legislator'
+
+csv_text = File.read("ActiveRecordSunlight/db/data/legislators.csv")
+csv = CSV.parse(csv_text, :headers => true)
+csv.each do |row|
+  Legislator.create!(row.to_hash)
+end

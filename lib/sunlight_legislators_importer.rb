@@ -1,7 +1,12 @@
 require 'csv'
+require_relative '../app/models/legislator'
+
+csv_text = File.read("/../db/data/legislators.csv")
+csv = CSV.parse(csv_text, :headers => true)
+
 
 class SunlightLegislatorsImporter
-  def self.import(filename)
+  def self.import(filename=File.dirname(__FILE__) + "/../db/data/legislators.csv")
     csv = CSV.new(File.open(filename), :headers => true)
     csv.each do |row|
       row.each do |field, value|
